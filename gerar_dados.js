@@ -3,7 +3,7 @@ import fs from 'fs';
 /**
  * Quantidade de registros sintéticos
  */
-const TOTAL_ROWS = 1000;
+const TOTAL_ROWS = 500;
 
 /**
  * Definição das colunas

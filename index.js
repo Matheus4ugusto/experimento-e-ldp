@@ -12,7 +12,7 @@ function calculateEpsilon(relativeError = 0.1) {
 }
 
 function randomId() {
-  return Math.floor(Math.random() * 1000) + 1;
+  return Math.floor(Math.random() * 500) + 1;
 }
 
 function getUserByIdFromCSV(id, filePath = "./dados_sinteticos.csv") {
@@ -251,9 +251,11 @@ async function main() {
         console.log(`Id selecionado: ${userId}`);
         console.log("=====================");
         console.time("Tempo de resposta da LLM");
-        const chat = ai.chats.create({ model: "gemini-3.5-flash" });
         const responseStart = Date.now();
-        let response = await chat.sendMessage({ message:  prompt});
+        let response = await ai.models.generateContent({
+            model: "gemini-3.5-flash",
+            contents: prompt
+        });
         const responseEnd = Date.now();
         console.log(`Resposta da LLM: ${response.text}`);
         console.timeEnd("Tempo de resposta da LLM");
