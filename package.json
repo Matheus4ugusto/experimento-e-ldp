@@ -1,5 +1,7 @@
 {
+  "type": "module",
   "dependencies": {
-    "ldp-interval": "^1.0.2"
+    "@google/genai": "^2.6.0",
+    "ldp-interval": "^1.0.3"
   }
 }
