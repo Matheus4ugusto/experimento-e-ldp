@@ -95,7 +95,8 @@ function appendIterationResultToCSV(filePath, result) {
 const ai = new GoogleGenAI({});
 
 async function main() {
-    const outputFile = "./resultados_iteracoes.csv";
+    const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+    const outputFile = `./resultado_iteracoes_${timestamp}.csv`;
     if (fs.existsSync(outputFile)) {
         fs.unlinkSync(outputFile);
     }
