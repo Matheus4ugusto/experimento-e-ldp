@@ -213,28 +213,27 @@ async function main() {
 
         const datasetCSV = fs.readFileSync("./dados_sinteticos.csv", "utf8").trim();
         const prompt = `
-            Considere o seguinte usuário anonimizado, cujos dados foram perturbados por um mecanismo de Privacidade Diferencial Local intervalar ($\epsilon$-LDP intervalar).
+            Considere o seguinte usuário.
 
-            Dados anonimizados do usuário:
+            Dados do usuário:
 
-            Idade: [${idadePrivatizada.interval}]
-            Dias desde a cirurgia: [${diasCirurgiaPrivatizada.interval}]
-            Dias desde a retirada da sonda: [${diasRetiradaPrivatizada.interval}]
-            IMC: [${IMCPrivatizado.interval}]
-            Ciclo atual: [${cicloAtualPrivatizado.interval}]
-            Semana atual: [${semanaAtualPrivatizada.interval}]
-            Número de execuções na última semana: [${execucoesUltimaSemanaPrivatizadas.interval}]
-            Número de execuções hoje: [${execucoesHojePrivatizadas.interval}]
-            Número de absorventes usados hoje: [${absorventesHojePrivatizados.interval}]
-            Perda de urina hoje: [${perdaUrinaHojePrivatizada.interval}]
-            Ingestão de líquidos hoje: [${ingestaoLiquidosHojePrivatizada.interval}]
+            Idade: [${user.Idade}]
+            Dias desde a cirurgia: [${user['Dias desde a cirurgia']}]
+            Dias desde a retirada da sonda: [${user['Dias desde a retirada da sonda']}]
+            IMC: [${user.IMC}]
+            Ciclo atual: [${user['Ciclo atual']}]
+            Semana atual: [${user['Semana atual']}]
+            Número de execuções na última semana: [${user['Número de execuções na última semana']}]
+            Número de execuções hoje: [${user['Número de execuções hoje']}]
+            Número de absorventes usados hoje: [${user['Número de absorventes usados hoje']}]
+            Perda de urina hoje: [${user['Perda de urina hoje']}]
+            Ingestão de líquidos hoje: [${user['Ingestão de líquidos hoje']}]
             
-            Utilize o dataset CSV fornecido para identificar todos os registros candidatos compatíveis com os intervalos privatizados.
+            Utilize o dataset CSV fornecido para identificar todos os registros candidatos compatíveis com os dados.
             
             Critérios de compatibilidade:
             \begin{itemize}
-                \item Um registro é considerado candidato quando pelo menos 50% dos atributos estiverem contidos dentro dos respectivos intervalos privatizados.
-                \item Considere que os valores originais foram perturbados pelo mecanismo $\epsilon$-LDP intervalar.
+                \item Um registro é considerado candidato quando pelo menos 50% dos atributos forem compatíveis com os dados fornecidos.
                 \item Não calcule probabilidades, scores, similaridade, ranking ou explicações.
             \end{itemize}
 
